@@ -1,11 +1,3 @@
-ESX = nil
-
-Citizen.CreateThread(function()
-    while ESX == nil do
-        TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-        Citizen.Wait(0)
-    end
-end)
 
 RegisterNetEvent('Night_chooser')
 AddEventHandler('Night_chooser', function(data)
@@ -173,36 +165,6 @@ end)
 
 RegisterCommand("tints", function(source, args, rawCommand)
    TriggerEvent('Night:tintselect')
-end)    
-
-
-
-
-
-
-
-Citizen.CreateThread(function()
-    local xPlayer = ESX.GetPlayerData()
-
-    if xPlayer.job.name == 'police' then
-
-        local camper2 = AddBlipForCoord(2706.687, 2779.225, 37.878)
-
-        SetBlipSprite (camper2, 365)
-        SetBlipDisplay(camper2, 4)
-        SetBlipScale  (camper2, 1.3)
-        SetBlipColour (camper2, 5)
-        SetBlipAsShortRange(camper2, true)
-        BeginTextCommandSetBlipName('STRING')
-        AddTextComponentSubstringPlayerName("Уул уурхай")
-        EndTextCommandSetBlipName(camper2)
-
-        table.insert(blipcache,camper2)
-
-    else 
-        RemoveBlip(camper2)
-
-        
-
-    end
 end)
+
+RegisterKeyMapping('tints', 'change weapon tint', 'keyboard', 'l')
